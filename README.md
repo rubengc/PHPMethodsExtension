@@ -14,6 +14,7 @@ composer.json:
     },
     "repositories" : [{
         "type" : "vcs",
+        "url" : "https://github.com/rubengc/PHPMethodsExtension.git"
     }],
 [...]
 ```
