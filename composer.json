@@ -1,0 +1,30 @@
+{
+  "name" : "rubengc/PHPMethodsExtension",
+  "description" : "PHPMethodsExtension",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Ruben Garcia",
+    "email" : "contact@rubengc.com"
+  }],
+  "keywords" : [
+    "PHPMethodsExtension"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+  },
+  "autoload" : {
+    "psr-0" : {
+      "rubengc\\PHPMethodsExtension" : ""
+    }
+  },
+  "target-dir" : "rubengc/PHPMethodsExtension",
+  "repositories" : [{
+  }],
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "0.1-dev"
+    }
+  }
+}
