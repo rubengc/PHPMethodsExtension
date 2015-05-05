@@ -68,9 +68,9 @@ if(!class_exists("Date")) {
 
         public function monthName($language = "english", $full = true) {
             if($full)
-                return unserialize(FULL_MONTH_NAMES)[$language][(integer)date("n", strtotime($this->date))-1];
+                return getFullMonthName((integer)date("n", strtotime($this->date))-1, $language);
             else
-                return unserialize(SHORT_MONTH_NAMES)[$language][(integer)date("n", strtotime($this->date))-1];
+                return getShortMonthName((integer)date("n", strtotime($this->date))-1, $language);
         }
 
         public function nextMonth($nextMonths = 1) {

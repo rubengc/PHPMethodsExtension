@@ -330,15 +330,23 @@ if(!function_exists("daysDifference")) {
 }
 
 if(!function_exists("monthName")) {
-    function monthName($date, $language = "english", $monthNamesConstant = FULL_MONTH_NAMES) {
-        return unserialize($monthNamesConstant)[$language][(integer)date("n", strtotime($date))-1];
+    function monthName($date, $language = "english", $full = true) {
+        if($full)
+            return getFullMonthName((integer)date("n", strtotime($date))-1, $language);
+        else
+            return getShortMonthName((integer)date("n", strtotime($date))-1, $language);
     }
 }
 
 if(!function_exists("monthNumber")) {
     function monthNumber($monthName, $leadingZero = false, $monthNamesConstant = FULL_MONTH_NAMES) {
         foreach(unserialize(LANGUAGES) as $language) {
-            $monthNumber = inArray(unserialize($monthNamesConstant)[$language], $monthName, true);
+            $monthNames = unserializeConstant($monthNamesConstant);
+
+            if(is_array($monthNames))
+                $monthNumber = inArray($monthNames[$language], $monthName, true);
+            else
+                $monthNumber = false;
 
             if($monthNumber !== false) {
                 $monthNumber = (integer)$monthNumber+1;
