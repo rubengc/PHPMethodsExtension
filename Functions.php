@@ -341,7 +341,7 @@ if(!function_exists("monthName")) {
 if(!function_exists("monthNumber")) {
     function monthNumber($monthName, $leadingZero = false, $monthNamesConstant = FULL_MONTH_NAMES) {
         foreach(unserialize(LANGUAGES) as $language) {
-            $monthNames = unserializeConstant($monthNamesConstant);
+            $monthNames = unserialize($monthNamesConstant);
 
             if(is_array($monthNames))
                 $monthNumber = inArray($monthNames[$language], $monthName, true);

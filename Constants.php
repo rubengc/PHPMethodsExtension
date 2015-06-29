@@ -30,39 +30,29 @@ define("RETURN_PME_OBJECTS", true);
 define("ARRAYLIST_SEPARATOR", ",");
 
 define("LANGUAGES",
-    base64_encode(serialize(array(
+    serialize(array(
         "english",
         "spanish"
-    )))
+    ))
 );
 
 define("FULL_MONTH_NAMES",
-    base64_encode(serialize(array(
+    serialize(array(
         "english" => array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
         "spanish" => array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
-    )))
+    ))
 );
 
 define("SHORT_MONTH_NAMES",
-    base64_encode(serialize(array(
+    serialize(array(
         "english" => array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
         "spanish" => array("Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic")
-    )))
+    ))
 );
-
-if(!function_exists("unserializeConstant")) {
-    /**
-     * @param string $constant
-     * @return array
-     */
-    function unserializeConstant($constant) {
-        return unserialize(base64_encode(FULL_MONTH_NAMES));
-    }
-}
 
 if(!function_exists("getFullMonthName")) {
     function getFullMonthName($index, $language = "english") {
-        $fullMonthNames = unserializeConstant(FULL_MONTH_NAMES);
+        $fullMonthNames = unserialize(FULL_MONTH_NAMES);
 
         if(is_array($fullMonthNames))
             return $fullMonthNames[$language][$index];
@@ -73,7 +63,7 @@ if(!function_exists("getFullMonthName")) {
 
 if(!function_exists("getShortMonthName")) {
     function getShortMonthName($index, $language = "english") {
-        $shortMonthNames = unserializeConstant(SHORT_MONTH_NAMES);
+        $shortMonthNames = unserialize(SHORT_MONTH_NAMES);
         if(is_array($shortMonthNames))
             return $shortMonthNames[$language][$index];
         else
