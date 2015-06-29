@@ -410,7 +410,7 @@ if(!function_exists("datesRange")) {
             }
         }
 
-        return $dates;
+        return array_values(array_unique($dates));
     }
 }
 
