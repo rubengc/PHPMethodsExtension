@@ -362,6 +362,28 @@ if(!function_exists("monthNumber")) {
     }
 }
 
+if(!function_exists("nextDay")) {
+    function nextDay($format = "Y-m-d H:i:s", $date = "1991-09-22", $nextDays = 1) {
+        if(func_num_args() == 1) {
+            $format = "Y-m-d";
+            $date = func_get_arg(0);
+        }
+
+        return date($format, strtotime("+" . $nextDays . " day " . $date));
+    }
+}
+
+if(!function_exists("previousDay")) {
+    function previousDay($format = "Y-m-d H:i:s", $date = "1991-09-22", $previousDays = 1) {
+        if(func_num_args() == 1) {
+            $format = "Y-m-d";
+            $date = func_get_arg(0);
+        }
+
+        return date($format, strtotime("-" . $previousDays . " day " . $date));
+    }
+}
+
 if(!function_exists("nextMonth")) {
     function nextMonth($format = "Y-m-d H:i:s", $date = "1991-09-22", $nextMonths = 1) {
         if(func_num_args() == 1) {
