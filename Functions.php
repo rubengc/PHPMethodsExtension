@@ -260,6 +260,38 @@ if(!function_exists("replaceIgnoreCase")) {
     }
 }
 
+if(!function_exists("replaceLast")) {
+    function replaceLast($object, $search, $replace, $ignoreCase = false) {
+        $type = gettype($object);
+
+        if($type == "string") {
+            if ($ignoreCase)
+                $pos = strrpos(strtolower($object), strtolower($search));
+            else
+                $pos = strrpos($object, $search);
+
+            if($pos !== false)
+                $object = substr_replace($object, $replace, $pos, strlen($search));
+        } else if($type == "array") {
+            $arrayAux = array();
+
+            foreach($object as $item) {
+                $arrayAux[] = replaceLast($item, $search, $replace, $ignoreCase);
+            }
+
+            $object = $arrayAux;
+        }
+
+        return PMEReturn($object);
+    }
+}
+
+if(!function_exists("replaceLastIgnoreCase")) {
+    function replaceLastIgnoreCase($object, $search, $replace) {
+        return replaceLast($object, $search, $replace, true);
+    }
+}
+
 /**
  * Returns true if $haystack starts with $needle. Returns true if $needle is an empty string.
  *
