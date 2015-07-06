@@ -248,6 +248,11 @@ if(!function_exists("replace")) {
             }
 
             $object = $arrayAux;
+        } else {
+            if ($ignoreCase)
+                $object = str_ireplace($search, $replace, $object."", $count);
+            else
+                $object = str_replace($search, $replace, $object."", $count);
         }
 
         return PMEReturn($object);
