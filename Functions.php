@@ -519,3 +519,28 @@ if(!function_exists("timeoutExec")) {
         }
     }
 }
+
+/*
+ * Removes a directory or file
+ */
+if(!function_exists("rm")) {
+    function rm($path) {
+        if (is_dir($path)) {
+            $objects = scandir($path);
+
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($path."/".$object) == "dir")
+                        rm($path."/".$object);
+                    else
+                        unlink($path."/".$object);
+                }
+            }
+
+            reset($objects);
+            rmdir($path);
+        } else if(file_exists($path)) {
+            unlink($path);
+        }
+    }
+}
