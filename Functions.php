@@ -75,7 +75,7 @@ if(!function_exists("contains")) {
                 $needle = strtolower($needle);
             }
 
-            return $needle === "" || strpos($haystack, $needle) !== false;
+            return $needle === "" || strpos($haystack, $needle) !== false || $haystack == $needle;
         } else if($type == "array") {
             foreach($haystack as $value)
                 if(contains($value, $needle, $ignoreCase))
