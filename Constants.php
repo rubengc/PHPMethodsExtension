@@ -22,7 +22,7 @@
 /*
  * Define if methods returns php primitive types(like array) or PHPMethodsExtension(PME) objects(like ArrayList)
  */
-define("RETURN_PME_OBJECTS", true);
+define("RETURN_PME_OBJECTS", false);
 
 /*
  * Define the separator to be used when an ArrayList is converted to String
