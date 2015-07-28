@@ -322,6 +322,29 @@ if(!function_exists("startsWithIgnoreCase")) {
     }
 }
 
+if(!function_exists("randomString")) {
+    function randomString($length = 5, $constant = ALPHANUMERIC)
+    {
+        if($length < 1)
+            $length = 1;
+
+        switch($constant) {
+            case ONLY_LETTERS: $string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                break;
+            case ONLY_LETTERS_LOWER_CASE: $string = "abcdefghijklmnopqrstuvwxyz";
+                break;
+            case ONLY_LETTERS_UPER_CASE: $string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                break;
+            case ONLY_NUMBERS: $string = "0123456789";
+                break;
+            default: $string = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                break;
+        }
+
+        return substr(str_shuffle($string), 0, $length);
+    }
+}
+
 // ARRAY
 
 if(!function_exists("inArray")) {
