@@ -29,6 +29,12 @@ define("RETURN_PME_OBJECTS", false);
  */
 define("ARRAYLIST_SEPARATOR", ",");
 
+define("ONLY_LETTERS", "0");
+define("ONLY_LETTERS_LOWER_CASE", "1");
+define("ONLY_LETTERS_UPER_CASE", "2");
+define("ONLY_NUMBERS", "3");
+define("ALPHANUMERIC", "4");
+
 define("LANGUAGES",
     serialize(array(
         "english",
