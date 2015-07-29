@@ -348,11 +348,14 @@ if(!function_exists("randomString")) {
 if(!function_exists("clear")) {
     function clear($string, $spaceReplacement = null)
     {
-        $string = preg_replace('/[^A-Za-z0-9\-]/', "", $string);
-        
         if($spaceReplacement != null) {
             $string = str_replace(" ", $spaceReplacement, $string);
+            $string = preg_replace('/[^A-Za-z0-9\-]/', "", $string);
             $string = preg_replace('/'.$spaceReplacement.'+/', $spaceReplacement, $string);
+        } else {
+            $string = str_replace(" ", '-', $string);
+            $string = preg_replace('/[^A-Za-z0-9\-]/', "", $string);
+            $string = str_replace('-', " ", $string);
         }
         
         return $string;
