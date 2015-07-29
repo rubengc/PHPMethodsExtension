@@ -71,6 +71,16 @@ if(!class_exists("MySQL")) {
 
         public function query($sql, $params = array()) {
             $this->sql = $sql;
+            
+            if($this->mode == "connection") {
+                $stmt = $this->bindParams();
+                $stmt->execute();
+                $this->reset();
+
+                return $this->getResults($stmt);
+            } else {
+                return $this;
+            }
         }
 
         public function select($fields = "*") {
