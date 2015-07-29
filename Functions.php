@@ -346,12 +346,16 @@ if(!function_exists("randomString")) {
 }
 
 if(!function_exists("clear")) {
-    function clear($string, $spaceReplacement = "-")
+    function clear($string, $spaceReplacement = null)
     {
-        $string = str_replace(" ", $spaceReplacement, $string);
         $string = preg_replace('/[^A-Za-z0-9\-]/', "", $string);
-
-        return preg_replace('/'.$spaceReplacement.'+/', $spaceReplacement, $string);
+        
+        if($spaceReplacement != null) {
+            $string = str_replace(" ", $spaceReplacement, $string);
+            $string = preg_replace('/'.$spaceReplacement.'+/', $spaceReplacement, $string);
+        }
+        
+        return $string;
     }
 }
 
