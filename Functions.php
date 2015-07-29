@@ -345,6 +345,16 @@ if(!function_exists("randomString")) {
     }
 }
 
+if(!function_exists("clear")) {
+    function clear($string, $spaceReplacement = "-")
+    {
+        $string = str_replace(" ", $spaceReplacement, $string);
+        $string = preg_replace('/[^A-Za-z0-9\-]/', "", $string);
+
+        return preg_replace('/'.$spaceReplacement.'+/', $spaceReplacement, $string);
+    }
+}
+
 // ARRAY
 
 if(!function_exists("inArray")) {
