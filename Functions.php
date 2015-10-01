@@ -265,6 +265,38 @@ if(!function_exists("replaceIgnoreCase")) {
     }
 }
 
+if(!function_exists("replaceFirst")) {
+    function replaceFirst($object, $search, $replace, $ignoreCase = false) {
+        $type = gettype($object);
+
+        if($type == "string") {
+            if ($ignoreCase)
+                $pos = strpos(strtolower($object), strtolower($search));
+            else
+                $pos = strpos($object, $search);
+
+            if($pos !== false)
+                $object = substr_replace($object, $replace, $pos, strlen($search));
+        } else if($type == "array") {
+            $arrayAux = array();
+
+            foreach($object as $item) {
+                $arrayAux[] = replaceFirst($item, $search, $replace, $ignoreCase);
+            }
+
+            $object = $arrayAux;
+        }
+
+        return PMEReturn($object);
+    }
+}
+
+if(!function_exists("replaceFirstIgnoreCase")) {
+    function replaceFirstIgnoreCase($object, $search, $replace) {
+        return replaceFirst($object, $search, $replace, true);
+    }
+}
+
 if(!function_exists("replaceLast")) {
     function replaceLast($object, $search, $replace, $ignoreCase = false) {
         $type = gettype($object);
